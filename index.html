@@ -32,10 +32,18 @@
       animation: pulse 1.5s ease-in-out infinite;
     }
 
-    /* Styling for your icon */
+    /* Styling for your icon to be 25% of the smaller screen dimension */
     .loading-icon {
-      width: 80px; /* Adjust size as needed */
-      height: 80px;
+      /* This is the key change: */
+      width: min(25vw, 25vh);
+      height: min(25vw, 25vh);
+
+      /* A safeguard to prevent the icon from becoming too large on huge screens */
+      max-width: 250px;
+      max-height: 250px;
+
+      /* Ensures the image scales properly without distortion */
+      object-fit: contain;
     }
 
     /* The "shrink and large" (pulse) animation */
@@ -88,7 +96,7 @@
 
   <script>
     // This script will only run if the redirect fails for some reason.
-    // If the page is still open after 2 seconds, it shows the fallback link.
+    // If the page is still open after 2.5 seconds, it shows the fallback link.
     setTimeout(function() {
       var fallback = document.getElementById('fallback-container');
       if (fallback) {

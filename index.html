@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Redirecting to Saikat Barua's Portfolio</title>
+  <title>Saikat Barua</title>
 
   <!-- Correct Canonical URL for SEO -->
   <link rel="canonical" href="https://saikat-barua.vercel.app">
@@ -11,98 +11,98 @@
   <meta http-equiv="refresh" content="0; url=https://saikat-barua.vercel.app">
 
   <style>
-    /* Basic page setup for a dark, clean look */
+    /* Basic page setup */
     html, body {
       height: 100%;
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: #f0f8ff; /* Very light blue to match your portfolio's theme */
-      
-      /* Center everything */
+      background-color: #f0f8ff; /* Light blue background to match your portfolio */
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
       overflow: hidden;
     }
 
-    /* Container for the icon */
-    .icon-container {
-      /* Applying the animation here */
+    /* Primary loader container with pulsing animation */
+    .loader-container {
       animation: pulse 1.5s ease-in-out infinite;
     }
 
-    /* Styling for your icon to be 25% of the smaller screen dimension */
-    .loading-icon {
-      /* This is the key change: */
+    /* Common styles for BOTH the main loading logo and the fallback logo */
+    .logo {
       width: min(25vw, 25vh);
       height: min(25vw, 25vh);
-
-      /* A safeguard to prevent the icon from becoming too large on huge screens */
       max-width: 250px;
       max-height: 250px;
-
-      /* Ensures the image scales properly without distortion */
       object-fit: contain;
     }
-
+    
     /* The "shrink and large" (pulse) animation */
     @keyframes pulse {
-      0% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.15);
-      }
-      100% {
-        transform: scale(1);
-      }
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
     }
 
-    /* Styles for the fallback link, initially hidden */
+    /* Styles for the fallback structure, initially hidden */
     #fallback-container {
       display: none; /* Hidden by default */
-      margin-top: 24px;
-      font-size: 14px;
-      color: #333; /* Darker text for light background */
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       text-align: center;
     }
 
-    #fallback-container a {
-      color: #0077cc; /* A standard, accessible blue */
+    /* The gorgeous, bold link text */
+    .fallback-link {
+      display: block;
+      margin-top: 1rem;
+      font-family: "Space Grotesk", "Segoe UI", Roboto, sans-serif; /* Using your portfolio's headline font */
+      font-weight: 700; /* Bold */
       text-decoration: none;
+      color: #111827; /* A strong, dark color */
+      
+      /* --- This makes the font size responsive and "equivalent" to the logo --- */
+      font-size: min(6vw, 6vh);
+      max-font-size: 60px; /* A safeguard for very large screens */
+      
+      transition: transform 0.2s ease-in-out;
     }
 
-    #fallback-container a:hover {
-      text-decoration: underline;
+    .fallback-link:hover {
+      transform: scale(1.05); /* A subtle pop on hover */
     }
   </style>
+  <!-- Link to Google Fonts to get your "Space Grotesk" font for the fallback -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- The container with your animated icon -->
-  <div class="icon-container">
-    <img src="iconic.png" alt="Loading Portfolio..." class="loading-icon">
+  <!-- The primary, animated loading icon -->
+  <div class="loader-container">
+    <img src="iconic.png" alt="Loading Portfolio..." class="logo">
   </div>
 
-  <!-- The Fallback Link (initially hidden) -->
+  <!-- The NEW Fallback Structure (initially hidden) -->
   <div id="fallback-container">
-    <p>
-      Opening my portfolio...<br>
-      <a href="https://saikat-barua.vercel.app">please click here</a>.
-    </p>
+    <img src="iconic.png" alt="Saikat Barua" class="logo">
+    <a href="https://saikat-barua.vercel.app" class="fallback-link">
+      Saikat Barua
+    </a>
   </div>
 
   <script>
-    // This script will only run if the redirect fails for some reason.
-    // If the page is still open after 2.5 seconds, it shows the fallback link.
+    // This script will only run if the redirect fails.
+    // After 2.5 seconds, it shows the fallback content and hides the loader.
     setTimeout(function() {
       var fallback = document.getElementById('fallback-container');
       if (fallback) {
-        fallback.style.display = 'block';
+        fallback.style.display = 'flex'; // Use flex to enable centering
       }
-      // Hide the loader if the fallback appears
-      var loader = document.querySelector('.icon-container');
+      
+      var loader = document.querySelector('.loader-container');
       if (loader) {
         loader.style.display = 'none';
       }

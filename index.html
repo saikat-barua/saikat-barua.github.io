@@ -4,93 +4,102 @@
   <meta charset="utf-8">
   <title>Redirecting to Saikat Barua's Portfolio</title>
 
-  <!-- SEO: Tells search engines the "real" URL is the Vercel one -->
+  <!-- Correct Canonical URL for SEO -->
   <link rel="canonical" href="https://saikat-barua.vercel.app">
 
-  <!-- The Instant Redirect -->
+  <!-- Instant Redirect to the correct Vercel App -->
   <meta http-equiv="refresh" content="0; url=https://saikat-barua.vercel.app">
 
   <style>
-    /* Basic page setup */
+    /* Basic page setup for a dark, clean look */
     html, body {
       height: 100%;
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: #111827; /* A nice dark gray */
-      color: #e5e7eb; /* A light gray for text */
+      background-color: #f0f8ff; /* Very light blue to match your portfolio's theme */
       
       /* Center everything */
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
     }
 
-    /* The SVG spinner styles */
-    .spinner {
-      width: 56px;
-      height: 56px;
-      animation: spin 1.2s linear infinite;
+    /* Container for the icon */
+    .icon-container {
+      /* Applying the animation here */
+      animation: pulse 1.5s ease-in-out infinite;
     }
 
-    /* The animation keyframes */
-    @keyframes spin {
-      from {
-        transform: rotate(0deg);
+    /* Styling for your icon */
+    .loading-icon {
+      width: 80px; /* Adjust size as needed */
+      height: 80px;
+    }
+
+    /* The "shrink and large" (pulse) animation */
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
       }
-      to {
-        transform: rotate(360deg);
+      50% {
+        transform: scale(1.15);
+      }
+      100% {
+        transform: scale(1);
       }
     }
 
     /* Styles for the fallback link, initially hidden */
-    #fallback-link {
+    #fallback-container {
       display: none; /* Hidden by default */
       margin-top: 24px;
       font-size: 14px;
-      color: #9ca3af; /* A muted gray */
+      color: #333; /* Darker text for light background */
       text-align: center;
     }
 
-    #fallback-link a {
-      color: #60a5fa; /* A friendly blue */
+    #fallback-container a {
+      color: #0077cc; /* A standard, accessible blue */
       text-decoration: none;
     }
 
-    #fallback-link a:hover {
+    #fallback-container a:hover {
       text-decoration: underline;
     }
   </style>
 </head>
 <body>
 
-  <!-- The "Gorgeous" Animating Icon (SVG) -->
-  <div class="spinner-container">
-    <svg class="spinner" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path d="M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm0,19a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z" fill="#e5e7eb" opacity="0.25"/>
-      <path d="M12,4a8,8,0,0,1,7.89,6.7A1.53,1.53,0,0,0,21.38,12h0a1.5,1.5,0,0,0,1.48-1.75,11,11,0,0,0-21.72,0A1.5,1.5,0,0,0,2.62,12h0a1.53,1.53,0,0,0,1.49-1.3A8,8,0,0,1,12,4Z" fill="#60a5fa"/>
-    </svg>
+  <!-- The container with your animated icon -->
+  <div class="icon-container">
+    <img src="iconic.png" alt="Loading Portfolio..." class="loading-icon">
   </div>
 
   <!-- The Fallback Link (initially hidden) -->
-  <div id="fallback-link">
+  <div id="fallback-container">
     <p>
-      Redirecting you to my portfolio...<br>
-      If you are not redirected,
+      Opening my portfolio...<br>
+      If you are not redirected automatically,
       <a href="https://saikat-barua.vercel.app">please click here</a>.
     </p>
   </div>
 
   <script>
     // This script will only run if the redirect fails for some reason.
-    // After 2 seconds, it will show the fallback link.
-    // If the redirect is successful, this page will be gone before the 2 seconds are up.
+    // If the page is still open after 2 seconds, it shows the fallback link.
     setTimeout(function() {
-      var fallback = document.getElementById('fallback-link');
+      var fallback = document.getElementById('fallback-container');
       if (fallback) {
         fallback.style.display = 'block';
       }
-    }, 2000); // 2000 milliseconds = 2 seconds
+      // Hide the loader if the fallback appears
+      var loader = document.querySelector('.icon-container');
+      if (loader) {
+        loader.style.display = 'none';
+      }
+    }, 2500); // 2500 milliseconds = 2.5 seconds
   </script>
 
 </body>

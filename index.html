@@ -1,15 +1,97 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <title>Redirecting to Saikat Barua's Portfolio</title>
-  <meta http-equiv="refresh" content="0; url=https://saikat-barua.vercel.app">
+
+  <!-- SEO: Tells search engines the "real" URL is the Vercel one -->
   <link rel="canonical" href="https://saikat-portfolio.vercel.app">
+
+  <!-- The Instant Redirect -->
+  <meta http-equiv="refresh" content="0; url=https://saikat-portfolio.vercel.app">
+
+  <style>
+    /* Basic page setup */
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #111827; /* A nice dark gray */
+      color: #e5e7eb; /* A light gray for text */
+      
+      /* Center everything */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* The SVG spinner styles */
+    .spinner {
+      width: 56px;
+      height: 56px;
+      animation: spin 1.2s linear infinite;
+    }
+
+    /* The animation keyframes */
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Styles for the fallback link, initially hidden */
+    #fallback-link {
+      display: none; /* Hidden by default */
+      margin-top: 24px;
+      font-size: 14px;
+      color: #9ca3af; /* A muted gray */
+      text-align: center;
+    }
+
+    #fallback-link a {
+      color: #60a5fa; /* A friendly blue */
+      text-decoration: none;
+    }
+
+    #fallback-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-  <p>
-    If you are not redirected automatically,
-    <a href="https://saikat-barua.vercel.app">click here to visit my portfolio</a>.
-  </p>
+
+  <!-- The "Gorgeous" Animating Icon (SVG) -->
+  <div class="spinner-container">
+    <svg class="spinner" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm0,19a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z" fill="#e5e7eb" opacity="0.25"/>
+      <path d="M12,4a8,8,0,0,1,7.89,6.7A1.53,1.53,0,0,0,21.38,12h0a1.5,1.5,0,0,0,1.48-1.75,11,11,0,0,0-21.72,0A1.5,1.5,0,0,0,2.62,12h0a1.53,1.53,0,0,0,1.49-1.3A8,8,0,0,1,12,4Z" fill="#60a5fa"/>
+    </svg>
+  </div>
+
+  <!-- The Fallback Link (initially hidden) -->
+  <div id="fallback-link">
+    <p>
+      Redirecting you to my portfolio...<br>
+      If you are not redirected,
+      <a href="https://saikat-portfolio.vercel.app">please click here</a>.
+    </p>
+  </div>
+
+  <script>
+    // This script will only run if the redirect fails for some reason.
+    // After 2 seconds, it will show the fallback link.
+    // If the redirect is successful, this page will be gone before the 2 seconds are up.
+    setTimeout(function() {
+      var fallback = document.getElementById('fallback-link');
+      if (fallback) {
+        fallback.style.display = 'block';
+      }
+    }, 2000); // 2000 milliseconds = 2 seconds
+  </script>
+
 </body>
 </html>
